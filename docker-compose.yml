@@ -1,0 +1,15 @@
+version: '3'
+services:
+  vue-ui:
+    build:
+      context: ./frontend
+      dockerfile: .
+    ports:
+      - "8080:8080"
+    stdin_open: true
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    container_name: vue-ui
+    volumes:
+       - ./frontend:/app

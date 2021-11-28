@@ -1,28 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <GChart
+      type="LineChart"
+      :data="chartData"
+      :options="chartOptions"
+    />    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import { GChart } from "vue-google-charts";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    GChart
+  },
+  data() {
+    return {
+      // Array will be automatically processed with visualization.arrayToDataTable function
+      chartData: [
+        ["Year", "Sales", "Expenses", "Profit"],
+        ["2014", 1000, 400, 200],
+        ["2015", 1170, 460, 250],
+        ["2016", 660, 1120, 300],
+        ["2017", 1030, 540, 350]
+      ],
+      chartOptions: {
+        chart: {
+          title: "Company Performance",
+          subtitle: "Sales, Expenses, and Profit: 2014-2017"
+        }
+      }
+    };
   }
-}
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
