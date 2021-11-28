@@ -1,37 +1,29 @@
 <template>
   <div id="app">
-    <GChart
-      type="LineChart"
-      :data="chartData"
-      :options="chartOptions"
-    />    
+    <img alt="Vue logo" src="./assets/logo.png">
+    <LineChart/>
+
   </div>
 </template>
 
 <script>
-import { GChart } from "vue-google-charts";
+import LineChart from './components/LineChart.vue'
+
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    GChart
-  },
-  data() {
-    return {
-      // Array will be automatically processed with visualization.arrayToDataTable function
-      chartData: [
-        ["Year", "Sales", "Expenses", "Profit"],
-        ["2014", 1000, 400, 200],
-        ["2015", 1170, 460, 250],
-        ["2016", 660, 1120, 300],
-        ["2017", 1030, 540, 350]
-      ],
-      chartOptions: {
-        chart: {
-          title: "Company Performance",
-          subtitle: "Sales, Expenses, and Profit: 2014-2017"
-        }
-      }
-    };
+    LineChart
   }
-};
+}
 </script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
