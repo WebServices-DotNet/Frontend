@@ -19,7 +19,7 @@
       />
       <div class="input">
         <label>Start time: </label>
-        <date-picker
+        <date-picker  
           v-model="selectedTime"
           v-on:change="(value) => changeValue('selectedTime', value)"
           valueType="date"
@@ -30,11 +30,9 @@
     <div class="data-container">
       <template v-if="data">
         <h2>Chart</h2>
-
         <LineChart :chartData="data" />
-                <h2 class="table-title">Table</h2>
-
-        <DataTable :data="data" />
+        <h2>Table</h2>
+        <TableChart :chartData="data" />
       </template>
       <template v-else>
         <h1>😔</h1>
@@ -46,7 +44,7 @@
 
 <script>
 import LineChart from "./components/LineChart.vue";
-import DataTable from "./components/DataTable.vue";
+import TableChart from "./components/TableChart.vue";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
 
@@ -57,9 +55,9 @@ export default {
   name: "App",
   components: {
     LineChart,
+    TableChart,
     SelectionInput,
     DatePicker,
-    DataTable,
   },
   data() {
     let selectedTime = new Date(Date.now());
@@ -155,7 +153,7 @@ label {
 }
 
 .form {
-  margin: 3rem 1rem;
+  margin-top: 3rem;
 }
 
 .data-container {
@@ -170,6 +168,7 @@ h1 {
 
 h2 {
   margin-bottom: 0;
+  margin-top: 4rem;
 }
 
 .table-title {

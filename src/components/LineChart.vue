@@ -17,10 +17,7 @@ export default {
   },
   data() {
     return {
-      // Array will be automatically processed with visualization.arrayToDataTable function
-
       chartOptions: {
-        // title: "Company Performance",
         curveType: "function",
         height: 400,
       },
@@ -28,3 +25,4 @@ export default {
   },
 };
 </script>
+
