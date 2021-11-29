@@ -1,10 +1,8 @@
 <template>
   <div class="chart">
-    <GChart
-      type="LineChart"
-      :data="chartData"
-      :options="chartOptions"
-    />    
+    <template v-if="chartData">
+      <GChart type="LineChart" :data="chartData" :options="chartOptions" />
+    </template>
   </div>
 </template>
 
@@ -13,28 +11,23 @@ import { GChart } from "vue-google-charts";
 export default {
   name: "LineChart",
   components: {
-    GChart
+    GChart,
   },
   props: {
-    msg: String
+    msg: String,
+    chartData: Array,
   },
   data() {
     return {
       // Array will be automatically processed with visualization.arrayToDataTable function
-      chartData: [
-        ["Year", "Sales", "Expenses", "Profit"],
-        ["2014", 1000, 400, 200],
-        ["2015", 1170, 460, 250],
-        ["2016", 660, 1120, 300],
-        ["2017", 1030, 540, 350]
-      ],
+
       chartOptions: {
-          title: "Company Performance",
-          curveType: "function",
-          height: 400,
-      }
+        // title: "Company Performance",
+        curveType: "function",
+        height: 400,
+      },
     };
-  }
+  },
 };
 </script>
 
