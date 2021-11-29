@@ -2,6 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/cars.svg" />
     <h1>Happy Cars</h1>
+
     <div class="form">
       <SelectionInput
         label="Choose a car:"
@@ -28,7 +29,11 @@
     </div>
     <div class="data-container">
       <template v-if="data">
+        <h2>Chart</h2>
+
         <LineChart :chartData="data" />
+                <h2 class="table-title">Table</h2>
+
         <DataTable :data="data" />
       </template>
       <template v-else>
@@ -157,6 +162,18 @@ label {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  margin-bottom: 0;
+}
+
+.table-title {
+  margin-top: 4rem;
 }
 
 .input {

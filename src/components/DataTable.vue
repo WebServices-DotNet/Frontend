@@ -32,9 +32,9 @@ export default {
 .data-table {
   display: flex;
   justify-content: center;
+  margin: 2rem 1rem;
 }
 table {
-  margin: 3rem 1rem;
   border-style: hidden;
 }
 table,
