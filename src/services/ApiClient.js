@@ -25,8 +25,8 @@ class ApiClient {
     return [];
   }
 
-  async getSensorDate(sensorName, carId) {
-    const result = await this.#axiosInstance.get(`api/${carId}/${sensorName}?start=2021-11-28T22%3A52%3A36.686Z&end=2021-11-28T22%3A55%3A36.686Z`);
+  async getSensorDate(sensorName, carId, startTime, endTime) {
+    const result = await this.#axiosInstance.get(`api/${carId}/${sensorName}?start=${startTime}&end=${endTime}`);
     if (result.data) {
       return result.data;
     }

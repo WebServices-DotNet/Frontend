@@ -3,6 +3,10 @@
     <template v-if="chartData">
       <GChart type="LineChart" :data="chartData" :options="chartOptions" />
     </template>
+    <template v-else>
+      <h1>😔</h1>
+      <h2>No data available</h2>
+    </template>
   </div>
 </template>
 
