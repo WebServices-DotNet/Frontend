@@ -26,12 +26,22 @@
         ></date-picker>
       </div>
     </div>
-    <LineChart :chartData="data" />
+    <div class="data-container">
+      <template v-if="data">
+        <LineChart :chartData="data" />
+        <DataTable :data="data" />
+      </template>
+      <template v-else>
+        <h1>😔</h1>
+        <h2>No data available</h2>
+      </template>
+    </div>
   </div>
 </template>
 
 <script>
 import LineChart from "./components/LineChart.vue";
+import DataTable from "./components/DataTable.vue";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
 
@@ -44,10 +54,11 @@ export default {
     LineChart,
     SelectionInput,
     DatePicker,
+    DataTable,
   },
   data() {
     let selectedTime = new Date(Date.now());
-    selectedTime.setMinutes(selectedTime.getMinutes() - 60);
+    selectedTime.setMinutes(selectedTime.getMinutes() - 1);
     console.log(selectedTime);
     return {
       loading: true,
@@ -139,7 +150,13 @@ label {
 }
 
 .form {
-  margin: 5rem 1rem;
+  margin: 3rem 1rem;
+}
+
+.data-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .input {
