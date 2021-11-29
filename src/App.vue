@@ -1,10 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/cars.svg" />
-    <h1>Cars</h1>
-    <br />
-
-    <br />
+    <h1>Happy Cars</h1>
     <div class="form">
       <SelectionInput
         label="Choose a car:"
@@ -28,8 +25,8 @@
           type="datetime"
         ></date-picker>
       </div>
-      <LineChart :chartData="data" />
     </div>
+    <LineChart :chartData="data" />
   </div>
 </template>
 
@@ -50,7 +47,8 @@ export default {
   },
   data() {
     let selectedTime = new Date(Date.now());
-    selectedTime.setMinutes(selectedTime.getMinutes() - 1);
+    selectedTime.setMinutes(selectedTime.getMinutes() - 60);
+    console.log(selectedTime);
     return {
       loading: true,
       availableSensors: [
@@ -89,7 +87,7 @@ export default {
 
     getEndTime() {
       let endTime = new Date(this.selectedTime);
-      endTime.setMinutes(this.selectedTime.getMinutes() + 1);
+      endTime.setMinutes(this.selectedTime.getMinutes() + 60);
       return endTime;
     },
 
@@ -111,7 +109,9 @@ export default {
               .name,
           ],
         ];
-        data.map((x) => this.data.push([x.createDate, x.value]));
+        data.map((x) =>
+          this.data.push([new Date(x.createDate).toLocaleString(), x.value])
+        );
         console.log(this.data);
       } else {
         this.data = null;
@@ -122,9 +122,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Nunito, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -132,10 +132,23 @@ export default {
   margin-top: 60px;
 }
 
-.form {
+label {
+  width: calc(50% - 0.5rem);
+  text-align: end;
+  padding-right: 0.5rem;
 }
 
-img {
+.form {
+  margin: 5rem 1rem;
+}
+
+.input {
+  margin: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+#app > img {
   height: 200px;
 }
 </style>
