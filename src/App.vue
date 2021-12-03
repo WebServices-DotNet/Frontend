@@ -20,8 +20,17 @@
       <div class="input">
         <label>Start time: </label>
         <date-picker
-          v-model="selectedTime"
-          v-on:change="(value) => changeValue('selectedTime', value)"
+          v-model="selectedStartTime"
+          v-on:change="(value) => changeValue('selectedStartTime', value)"
+          valueType="date"
+          type="datetime"
+        ></date-picker>
+      </div>
+      <div class="input">
+        <label>End time: </label>
+        <date-picker
+          v-model="selectedEndTime"
+          v-on:change="(value) => changeValue('selectedEndTime', value)"
           valueType="date"
           type="datetime"
         ></date-picker>
@@ -63,9 +72,9 @@ export default {
     DownloadData,
   },
   data() {
-    let selectedTime = new Date(Date.now());
-    selectedTime.setMinutes(selectedTime.getMinutes() - 1);
-    console.log(selectedTime);
+    let selectedStartTime = new Date(Date.now());
+    selectedStartTime.setMinutes(selectedStartTime.getMinutes() - 1);
+    let selectedEndTime = new Date(Date.now());
     return {
       loading: true,
       availableSensors: [
@@ -76,7 +85,8 @@ export default {
       ],
       cars: [],
       data: null,
-      selectedTime: selectedTime,
+      selectedStartTime: selectedStartTime,
+      selectedEndTime: selectedEndTime,
       selectedCar: null,
       selectedSensor: "speed",
     };
@@ -102,19 +112,13 @@ export default {
       this.loading = false;
     },
 
-    getEndTime() {
-      let endTime = new Date(this.selectedTime);
-      endTime.setMinutes(this.selectedTime.getMinutes() + 60);
-      return endTime;
-    },
-
     async fetchSensorData() {
       this.loading = true;
       let data = await ApiClient.instance.getSensorDate(
         this.selectedSensor,
         this.selectedCar,
-        this.selectedTime.toISOString(),
-        this.getEndTime().toISOString()
+        this.selectedStartTime.toISOString(),
+        this.selectedEndTime.toISOString()
       );
       console.log("data");
       console.log(data);
