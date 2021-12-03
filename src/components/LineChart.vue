@@ -12,7 +12,6 @@ export default {
     GChart,
   },
   props: {
-    msg: String,
     chartData: Array,
   },
   data() {
