@@ -32,6 +32,14 @@ class ApiClient {
     }
     return [];
   }
+
+  async getStatistics(carId) {
+    const result = await this.#axiosInstance.get(`api/${carId}/stats`);
+    if (result.data) {
+      return result.data;
+    }
+    return [];
+  }
 }
 
 export default ApiClient;

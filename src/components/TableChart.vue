@@ -44,7 +44,7 @@ tr.google-visualization-table-tr-odd {
 th.google-visualization-table-tr,
 td.google-visualization-table-td {
   border: 1px solid gainsboro;
-  min-width: 200px;
+  min-width: 150px;
 }
 
 </style>
